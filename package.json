@@ -1,0 +1,19 @@
+{
+  "name": "ppt",
+  "version": "1.0.0",
+  "description": "work && study ppt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hentaicracker/ppt.git"
+  },
+  "author": "hentaicracker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hentaicracker/ppt/issues"
+  },
+  "homepage": "https://github.com/hentaicracker/ppt#readme"
+}
