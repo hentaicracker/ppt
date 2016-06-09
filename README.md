@@ -1,2 +1,2 @@
-# ppt
-work &amp;&amp; study ppt
+# Slides
+work &amp;&amp; study slides
