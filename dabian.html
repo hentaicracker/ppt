@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Vue.js —— hentaicracker</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <h2>基于web的个人任务管理系统的设计与开发</h2>
+          <p>指导老师：季斌</p>
+          <p>陈俊生</p>
+        </section>
+
+				<section>
+					<h2>目录</h2>
+					<ol>
+						<li>研究背景和意义</li>
+						<li>需求分析</li>
+						<li>系统架构</li>
+						<li>系统实现</li>
+						<li>结论</li>
+					</ol>
+				</section>
+
+        <section>
+          <h2>研究背景和意义</h2>
+					<p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传统的任务管理模式（如纸质清单、PC端软件）对于个人而言，往往存在着同步困难，难以携带等缺点，会让我们任务管理的效率低下。一个基于web的个人任务管理系统可以为用户提供更加高效的任务管理。随着互联网技术的发展，现在移动互联网也逐渐成为主流，基本上人人都拥有一部智能设备，一般的智能电子设备都有浏览器，通过浏览器就能访问个人任务管理系统，这样会大大提高任务管理的效率，从而进一步提升个人在社会中的竞争力。</p>
+        </section>
+
+        <section>
+          <h2>需求分析</h2>
+					<ul>
+						<li>系统概述</li>
+						<li>业务流程分析</li>
+						<li>功能需求分析</li>
+					</ul>
+        </section>
+
+        <section data-transition="zoom" data-background="#fff">
+          <section >
+            <h3>系统概述</h3>
+						<p class="fragment" style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人任务管理系统是一个基于web的系统和应用。</p>
+						<p class="fragment" style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;它直接运行在各种平台的浏览器上，通过Internet进行访问。</p>
+						<p class="fragment" style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人任务管理系统具备了实时性、便捷性、低成本等特点。</p>
+          </section>
+          <section>
+            <h3>业务流程分析</h3>
+            <ul>
+              <li class="fragment fade-up">用户管理：用户登录、注册、注销</li>
+              <li class="fragment fade-up">任务管理：任务添加、修改、删除、查询</li>
+              <li class="fragment fade-up">统计：未完成和已完成，行程预览</li>
+            </ul>
+          </section>
+          <section>
+            <h3>功能需求分析</h3>
+              <p class="fragment fade-up">系统主要模块</li>
+              <p class="fragment fade-up">
+								<img data-src="imgs/functions.png" alt="功能模块图">
+              </p>
+          </section>
+        </section>
+
+				<section>
+					<h2>系统架构</h2>
+					<ul>
+						<li>MVC模式</li>
+						<li>系统架构设计</li>
+						<li>数据库设计</li>
+					</ul>
+				</section>
+
+				<section>
+
+          <section>
+            <h3>MVC模式</h3>
+						<p>
+							<img data-src="imgs/mvc.png" alt="mvc">
+						</p>
+						<p class="fragment"><small>MVC是一个框架模式，它强制性的使应用程序的输入、处理和输出分开。</small></p>
+						<p class="fragment"><small>使用MVC应用程序被分层三个核心部件：模型、视图、控制器。</small></p>
+          </section>
+          <section>
+            <h3>MVC模式的优势：前后端分离</h3>
+            <ul>
+              <li class="fragment fade-up">是一种开发模式</li>
+              <li class="fragment fade-up">分清前后端职责，独立部署</li>
+              <li class="fragment fade-up">提高开发效率</li>
+              <li class="fragment fade-up">全部使用AJAX进行数据交互</li>
+              <li class="fragment fade-up">通过SPA使得前端控制路由，处理大部分业务逻辑</li>
+            </ul>
+          </section>
+					<section data-background="#fff">
+						<h3>系统架构设计</h3>
+						<p>
+							<img data-src="imgs/jiagou.png" alt="三层架构">
+						</p>
+					</section>
+					<section data-background="#fff">
+						<h3>视图层</h3>
+						<p class=" fade-up">使用vue.js开发组件化的前端页面</p>
+						<p class=" fade-up">
+							<img data-src="imgs/view.png" alt="组件图">
+						</p>
+					</section>
+					<section data-background="#fff">
+						<h3>控制层</h3>
+						<p class=" fade-up">使用springMVC</p>
+						<p class=" fade-up">主要用来处理请求</p>
+						<p class=" fade-up">
+							<img data-src="imgs/controller.png" alt="">
+						</p>
+					</section>
+					<section data-background="#fff">
+						<h3>业务逻辑层</h3>
+						<p class=" fade-up">使用spring</p>
+						<p class=" fade-up">处理一些必要的业务逻辑</p>
+						<p class=" fade-up">
+							<img data-src="imgs/service.png" alt="">
+						</p>
+					</section>
+					<section data-background="#fff">
+						<h3>模型层</h3>
+						<p class=" fade-up">使用hibernate</p>
+						<p class=" fade-up">数据查询与修改，将数据库的数据与domain进行映射</p>
+						<p class=" fade-up">
+							<img data-src="imgs/dao.png" alt="">
+						</p>
+					</section>
+          <section data-background="#fff">
+            <h3>数据库设计</h3>
+              <p class=" fade-up">主要由用户表、任务表以及地图信息表组成</p>
+              <p class=" fade-up">
+								<img data-src="imgs/db.png" alt="数据库图">
+              </p>
+          </section>
+					<section>
+						<h3>个人任务管理系统架构的特点</h3>
+						<ul>
+							<li>实现了前后端分离开发模式</li>
+							<li>实现了前端页面组件式开发</li>
+							<li>数据与视图双向绑定</li>
+							<li>服务器端MVC</li>
+							<li>可扩展性强</li>
+						</ul>
+					</section>
+        </section>
+
+				<section>
+					<h2>系统实现</h2>
+				</section>
+
+				<section>
+					<section>
+						<h3>登录界面</h3>
+						<p><img data-src="imgs/login.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<p><img data-src="imgs/loginerror.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<h3>注册界面</h3>
+						<p><img data-src="imgs/register.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<p><img data-src="imgs/registererror.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<h3>系统主界面</h3>
+						<p><img data-src="imgs/main.png" alt="main"></p>
+					</section>
+					<section>
+						<h3>添加任务</h3>
+						<p><img data-src="imgs/addtask.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<h3>设置目的地</h3>
+						<p><img data-src="imgs/map1.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<p>
+							<img data-src="imgs/map2.png" alt="">
+						</p>
+					</section>
+					<section>
+						<h3>完成情况统计</h3>
+						<p><img data-src="imgs/pie.png" alt="数据库图"></p>
+					</section>
+					<section>
+						<h3>行程预览</h3>
+						<p><img data-src="imgs/mudidi.png" alt="数据库图"></p>
+					</section>
+				</section>
+
+				<section>
+					<h2>结论</h2>
+					<p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人任务管理系统是用企业级架构模式SpringMVC、Spring、Hibernate等框架来搭建的。其中严格按照控制层、业务逻辑层和模型层的分层模式和规范来写服务器端模块代码。这样的分层使得系统架构结构清晰，代码模块明显，大大提高了开发效率。</p>
+					<p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人任务管理系统采用了前端MVVM框架Vue.js来写前端组件，通过组件化大大提高了代码的可复用性，同时代码模块化，提高了代码的可读性和可维护行。</p>
+				</section>
+
+				<section>
+					<h2>感谢</h2>
+					<p>感谢季斌老师对毕设的指导</p>
+					<p>感谢全体地理信息系统老师四年来的教导</p>
+					<p>感谢所有帮助过我的同学们</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
