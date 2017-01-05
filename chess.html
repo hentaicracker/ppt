@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>陈氏五子棋</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+    body{
+      display: flex;
+      justify-content: center; 
+      font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    }
+    #app{
+      text-align: center;
+    }
+    .chess{
+      background-color: #ECB88A;
+      font-size: 0;
+      border: 3px solid #000;
+      margin-bottom: 30px;
+    }
+    i{
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      text-align: left;
+    }
+    i::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      border-top: 1px solid #000;
+      width: 40px;
+      height: 0;
+    }
+    i::after{
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      border-left: 1px solid #000;
+      height: 40px;
+      width: 0;
+    }
+    i.w,
+    i.w::after,
+    i.w::before{
+      background-color: #fff;
+      border-color: #fff;
+    }
+    i.b,
+    i.b::after,
+    i.b::before{
+      background-color: #000;
+    }
+    button {
+      width: 100px;
+      height: 30px;
+      background-color: #ECB88A;
+      border: 0;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" v-cloak>
+    <h1>陈氏五子棋</h1>
+    <div class="chess">
+      <template v-for="(k,y) in pieces.len">
+        <template v-for="(k,x) in pieces.len">
+          <i :class="pieces[_cover(x) + _cover(y)]" @click="tick(x, y)"></i>
+          <br v-if="x == pieces.len - 1">
+        </template>
+      </template>
+    </div>
+    <div>
+      <button class="replay" @click="init()">重新开始</button>
+      <button class="xiaohe" @click="undo()">小贺专用</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.bootcss.com/vue/2.1.4/vue.min.js"></script>
+
+  <script>
+      new Vue({
+
+        el: '#app',
+
+        name: 'Chess',
+
+        data: {
+          gameOver: false,
+          chessWidth: 15,
+          pieces: {},
+          last: '',
+          player: 0,
+          pieceClass: {
+            b: 'b',
+            w: 'w'
+          }
+        },
+
+        created () {
+          this.init()
+        },
+
+        methods: {
+
+          init() {
+            this.gameOver = false
+            this.last = ''
+            this.player = 0
+            let pieces = {
+              len: this.chessWidth
+            }
+            const center = parseInt(this.chessWidth / 2)
+            for(let x = 0; x < pieces.len; x++) {
+              for(let y = 0; y < pieces.len; y++) {
+                let player = ''
+                if(x === center && y === center) {
+                  player = this.pieceClass.b
+                }
+                pieces[this._cover(x) + this._cover(y)] = player
+              }
+            }
+            this.pieces = pieces
+          },
+
+          tick(x, y) {
+            const cor = this._cover(x) + this._cover(y)
+            if(!this.gameOver && !this.pieces[cor]) {
+              this.pieces[cor] = !this.player ? this.pieceClass.w : this.pieceClass.b
+              this.last = cor
+              if(!this.check(x, y)) {
+                this.player = !this.player
+              }
+            }
+          },
+
+          undo(){
+            if(!this.gameOver && this.last) {
+              this.pieces[this.last] = ''
+              this.last = ''
+              this.player = !this.player
+            } 
+          },
+
+          check(x, y) {
+            let cor_x = this._cover(x)
+            let cor_y = this._cover(y)
+            let cor_piece = this.pieces[cor_x + cor_y]
+
+            let count = 0
+            for(let i = 0, len = this.chessWidth; i < len; i++) {
+              if(cor_piece === this.pieces[cor_x + this._cover(i)]) {
+                count++
+              } else {
+                count = 0
+              }
+              if(count === 5) {
+                let str = this.player ? '黑棋' : '白棋'
+                alert(`${str}赢！`)
+                this.gameOver = true
+                return true
+              }
+            }
+
+            count = 0
+            for(let i = 0, len = this.chessWidth; i < len; i++) {
+              if(cor_piece === this.pieces[this._cover(i) + cor_y]) {
+                count++
+              } else {
+                count = 0
+              }
+              if(count === 5) {
+                let str = this.player ? '黑棋' : '白棋'
+                alert(`${str}赢！`)
+                this.gameOver = true
+                return true
+              }
+            }
+
+            count = 0
+            let sub = Math.min(x, y);
+            sub = sub > 5 ? 5 : sub
+
+            let _x = x - sub
+            let _y = y - sub
+
+            for(let i = 0, len = this.chessWidth - Math.abs(x - y); i < len; i++) {
+              if(cor_piece === this.pieces[this._cover(_x) + this._cover(_y)]) {
+                count++
+              } else {
+                count = 0
+              }
+              _x++
+              _y++
+              if(count === 5) {
+                let str = this.player ? '黑棋' : '白棋'
+                alert(`${str}赢！`)
+                this.gameOver = true
+                return true
+              }
+            }
+
+            count = 0
+            _x = this.chessWidth - x - 1
+            _y = y
+            sub = Math.min(_x, _y)
+            sub = sub > 5 ? 5 : sub
+
+            _x = _x - sub
+            _y = _y - sub
+
+            for(let i = 0, len = this.chessWidth - Math.abs(_x - _y); i < len; i++) {
+              if(cor_piece === this.pieces[this._cover(_y) + this._cover(this.chessWidth - _x - 1)]) {
+                count++
+              } else {
+                count = 0
+              }
+              _x++
+              _y++
+              if(count === 5) {
+                let str = this.player ? '黑棋' : '白棋'
+                alert(`${str}赢！`)
+                this.gameOver = true
+                return true
+              }
+            }
+
+            return false
+
+          },
+
+          _cover(m) {
+            return m < 10 ? `0${m}` : `${m}`
+          }
+
+        }
+
+      })
+  </script>
+</body>
+
+</html>
