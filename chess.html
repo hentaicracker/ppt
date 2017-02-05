@@ -15,6 +15,10 @@
     #app {
       text-align: center;
     }
+
+    [v-cloak] {
+      display: none;
+    }
     
     .chess {
       background-color: #ECB88A;
@@ -78,7 +82,7 @@
 
 <body>
 
-  <div id="app">
+  <div id="app" v-cloak>
     <h1>陈氏五子棋</h1>
     <div class="chess">
       <template v-for="(k,y) in pieces.len">
