@@ -69,19 +69,29 @@
             </section>
 
             <section>
-                    <img height="600" data-src="imgs/wx1.jpg">
-                    <img height="600" data-src="imgs/wx2.png">
+                <h2>总结一下</h2>
+                <ul>
+                    <li class="fragment fade-up">无需下载</li>
+                    <li class="fragment fade-up">触手可及</li>
+                    <li class="fragment fade-up">用完即走</li>
+                    <li class="fragment fade-up">无须卸载</li>
+                </ul>
+            </section>
+
+            <section>
+                <img height="600" data-src="imgs/wx1.jpg">
+                <img height="600" data-src="imgs/wx2.png">
             </section>
 
             <section id="fragments">
                 <h2>小程序特点</h2>
                 <ul>
-						<li class="fragment fade-up" >类web，不是H5</li>
-						<li class="fragment fade-up">即用即走，随手可得</li>
-						<li class="fragment fade-up">拥有离线能力</li>
-						<li class="fragment fade-up">基于微信跨平台</li>
-						<li class="fragment fade-up">媲美原生操作体验</li>
-					</ul>
+                    <li class="fragment fade-up">类web，不是H5</li>
+                    <li class="fragment fade-up">即用即走，随手可得</li>
+                    <li class="fragment fade-up">拥有离线能力</li>
+                    <li class="fragment fade-up">基于微信跨平台</li>
+                    <li class="fragment fade-up">媲美原生操作体验</li>
+                </ul>
             </section>
 
             <section>
@@ -100,6 +110,10 @@
 
             <section>
                 <h2>小程序开发框架</h2>
+                <ul>
+                    <li class="fragment fade-up">JavaScript(ES6)</li>
+                    <li class="fragment fade-up">HTML/CSS</li>
+                </ul>
             </section>
 
             <section>
@@ -182,14 +196,99 @@ $scope.changeName = function() {
             </section>
 
             <section>
-                <h2>WXML</h2>
-                <ul>
-                    <li>支持数据绑定</li>
-                    <li>支持逻辑算术、运算</li>
-                    <li>支持模板、引用</li>
-                    <li>支持添加事件（bindtap）</li>
-                </ul>
+                <section>
+                    <h2>WXML</h2>
+                    <ul>
+                        <li>支持数据绑定</li>
+                        <li>支持逻辑算术、运算</li>
+                        <li>支持模板、引用</li>
+                        <li>支持添加事件（bindtap）</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>数据绑定</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+<view id="item-{{id + 1}}"> {{ message }} </view>
+
+Page({
+  data: {
+    message: 'Hello MINA!',
+    id: 0
+  }
+})
+					</code></pre>
+                </section>
+                <section>
+                    <h3>条件渲染</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+<view wx:if="{{condition}}"> {{ message }} </view>
+
+Page({
+  data: {
+    message: 'Hello MINA!',
+    condition: true
+  }
+})
+					</code></pre>
+                </section>
+                <section>
+                    <h3>列表渲染</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+<block wx:for="{{list}}">
+    <view id="item-{{index}}"> {{ item.name }} : {{ item.age }} 岁</view>
+    <view > {{ message }} </view>
+</block>                        
+
+Page({
+  data: {
+    list: [{
+        age: 10,
+        name: '小明'
+    },{
+        age: 12,
+        name: '大明'
+    }],
+    message: '是好孩子'
+  }
+})
+					</code></pre>
+                </section>
+                <section>
+                    <h3>模板、事件和引用</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+<!--  ming.wxml -->
+<template name="ming">
+    <view id="item-{{index}}"> {{ item.name }} : {{ item.age }} 岁</view>
+    <view > {{ message }} </view>
+</template>
+
+<!--  index.wxml -->
+<import src="ming.wxml"/>
+<block wx:for="{{list}}">
+    <template is="ming" data={{item}}></template>
+</block>
+<button bindTap="tapMe">Tap me!</button>
+
+Page({
+  data: {
+    list: [{
+        age: 10,
+        name: '小明'
+    },{
+        age: 12,
+        name: '大明'
+    }],
+    message: '是好孩子'
+  },
+  tapMe: function() {
+    console.log('Tap me!')
+  }
+})
+					</code></pre>
+                </section>
             </section>
+
+
 
             <section>
                 <h2>WXSS</h2>
@@ -210,11 +309,52 @@ $scope.changeName = function() {
             <section>
                 <h2>逻辑层</h2>
                 <p>逻辑层将数据进行处理后发送给视图层，同时接受视图层的事件反馈</p>
+                <ol>
+                    <li>通过App()函数来注册小程序，通过Page()函数来注册页面</li>
+                    <li>提供丰富的API，既能调用微信服务，也能调用native基础功能</li>
+                    <li>每个页面有独立的作用域，支持模块化开发</li>
+                    <li>数据绑定，生命周期，路由管理</li>
+                </ol>
             </section>
 
             <section>
                 <h2>API</h2>
                 <p><img data-src="imgs/wx7.jpg"></p>
+            </section>
+
+            <section>
+                <h2>小程序开发的优点</h2>
+                <ul>
+                    <li>视图与逻辑层分离，通过数据驱动，不直接操作DOM</li>
+                    <li>全部使用https</li>
+                    <li>有离线能力</li>
+                    <li>前端组件化开发</li>
+                    <li>加入rpx单位，隔离设备尺寸，方便开发</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>一些问题</h2>
+                <ul>
+                    <li>仍然使用WebView渲染，非原生渲染</li>
+                    <li>不能在非微信环境下开发</li>
+                    <li>不能扩展新组件</li>
+                    <li>无window/document对象</li>
+                    <li>等等</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>社区动态</h2>
+                <p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html">小程序官方文档</a></p>
+                <p><a href="https://github.com/wepyjs/wepy">小程序组件化开发框架wepy</a></p>
+                <p><a href="https://github.com/youzan/zanui-weapp">微信小程序 UI 库</a></p>
+                <p>...</p>
+            </section>
+
+            <section style="text-align: left;">
+                <h1>THE END</h1>
+                <h2>谢谢大家！</h2>
             </section>
 
         </div>
