@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Vue.js —— hentaicracker</title>
+    <title>微信小程序开发</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -46,18 +46,21 @@
                 <h3>陈俊生</h3>
             </section>
 
-            <section data-transition="fade">
+            <section>
                 <h2>内容</h2>
                 <ol>
                     <li>微信小程序介绍</li>
-                    <li>需求分析</li>
-                    <li>系统架构</li>
-                    <li>系统实现</li>
+                    <li>小程序开发</li>
+                    <li>社区动态</li>
                     <li>结论</li>
                 </ol>
             </section>
 
-            <section data-transition="fade">
+            <section>
+                <h2>小程序介绍</h2>
+            </section>
+
+            <section>
                 <h2>什么是小程序?</h2>
                 <p style="text-align: left;">张小龙说:</p>
                 <blockquote>
@@ -66,35 +69,152 @@
             </section>
 
             <section>
-                <h2>系统架构</h2>
+                    <img height="600" data-src="imgs/wx1.jpg">
+                    <img height="600" data-src="imgs/wx2.png">
+            </section>
 
+            <section id="fragments">
+                <h2>小程序特点</h2>
+                <ul>
+						<li class="fragment fade-up" >类web，不是H5</li>
+						<li class="fragment fade-up">即用即走，随手可得</li>
+						<li class="fragment fade-up">拥有离线能力</li>
+						<li class="fragment fade-up">基于微信跨平台</li>
+						<li class="fragment fade-up">媲美原生操作体验</li>
+					</ul>
             </section>
 
             <section>
-
-
+                <h2>小程序入口</h2>
+                <ul>
+                    <li>扫码进入小程序</li>
+                    <li>搜索小程序</li>
+                    <li>小程序发送到桌面(Android)</li>
+                    <li>发送给朋友</li>
+                </ul>
             </section>
 
             <section>
-                <h2>系统实现</h2>
+                <img data-src="imgs/wx4.jpeg">
+            </section>
+
+            <section>
+                <h2>小程序开发框架</h2>
             </section>
 
             <section>
                 <section>
-                    <h3>登录界面</h3>
-                    <p><img data-src="imgs/login.png" alt="数据库图"></p>
+                    <h2>视图层</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+<view> Hello {{name}}! </view>
+<button bindtap="changeName"> Click me! </button>
+					</code></pre>
+                    <h2>逻辑层</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+var helloData = {
+  name: '爱吃吧'
+}
+
+Page({
+  data: helloData,
+  changeName: function(e) {
+    // sent data change to view
+    this.setData({
+      name: '芯海'
+    })
+  }
+})
+					</code></pre>
+                </section>
+
+                <section>
+                    <h2>AngularJS视图</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+<div> Hello {{name}}! </div>
+<button ng-click="changeName()"> Click me! </button>
+					</code></pre>
+                    <h2>AngularJS逻辑层</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+$scope.name = '爱吃吧';
+
+$scope.changeName = function() {
+    $scope.name = '芯海';
+}
+					</code></pre>
+                </section>
+
+                <section>
+                    <h2>VueJS组件</h2>
+                    <pre><code class="hljs" data-trim contenteditable>
+<template>
+<div> Hello {{name}}! </div>
+<button @click="changeName()"> Click me! </button>
+</template>
+
+<script>
+    new Vue({
+        data: {
+            name: '爱吃吧'
+        },
+
+        methods: {
+            changeName() {
+                this.name = '芯海'
+            }
+        }
+    })
+</script>
+
+					
+					</code></pre>
                 </section>
 
             </section>
 
             <section>
-                <h2>结论</h2>
-
+                <img width="600" style="border:0;box-shadow: none;" data-src="imgs/wx5.png">
             </section>
 
             <section>
-                <h2>感谢</h2>
+                <h2>视图层</h2>
+                <p>视图层由 <span style="color: #17ff2e;">WXML</span> 与 <span style="color: #17ff2e;">WXSS</span> 编写，由组件来进行展示。</p>
+                <p>将逻辑层的数据反应成视图，同时将视图层的事件发送给逻辑层。</p>
+            </section>
 
+            <section>
+                <h2>WXML</h2>
+                <ul>
+                    <li>支持数据绑定</li>
+                    <li>支持逻辑算术、运算</li>
+                    <li>支持模板、引用</li>
+                    <li>支持添加事件（bindtap）</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>WXSS</h2>
+                <ul>
+                    <li>支持大部分CSS特性</li>
+                    <li>添加尺寸单位rpx，可根据屏幕宽度自适应</li>
+                    <li>使用@import语句可以导入外联样式表</li>
+                    <li>不支持多层选择器-避免被组件内结构破坏</li>
+                    <li>支持基本的选择器，如：class,id,element,::before等</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>组件</h2>
+                <p><img data-src="imgs/wx6.jpg"></p>
+            </section>
+
+            <section>
+                <h2>逻辑层</h2>
+                <p>逻辑层将数据进行处理后发送给视图层，同时接受视图层的事件反馈</p>
+            </section>
+
+            <section>
+                <h2>API</h2>
+                <p><img data-src="imgs/wx7.jpg"></p>
             </section>
 
         </div>
