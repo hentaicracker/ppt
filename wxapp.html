@@ -52,7 +52,6 @@
                     <li>微信小程序介绍</li>
                     <li>小程序开发</li>
                     <li>社区动态</li>
-                    <li>结论</li>
                 </ol>
             </section>
 
@@ -263,7 +262,7 @@ Page({
 </template>
 
 <!--  index.wxml -->
-<import src="ming.wxml"/>
+<import src="ming.wxml"></import>
 <block wx:for="{{list}}">
     <template is="ming" data={{item}}></template>
 </block>
@@ -347,8 +346,8 @@ Page({
             <section>
                 <h2>社区动态</h2>
                 <p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html">小程序官方文档</a></p>
-                <p><a href="https://github.com/wepyjs/wepy">小程序组件化开发框架wepy</a></p>
-                <p><a href="https://github.com/youzan/zanui-weapp">微信小程序 UI 库</a></p>
+                <p><a href="https://github.com/wepyjs/wepy">小程序组件化开发框架 wepy</a></p>
+                <p><a href="https://github.com/youzan/zanui-weapp">微信小程序 UI 库 ZanUI</a></p>
                 <p>...</p>
             </section>
 
